@@ -70,7 +70,7 @@
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         if (!error) {
-            NSString *responseString = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
+            NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
             
             NSMutableDictionary *parts = [responseString dictionaryFromQueryStringComponents];
             
