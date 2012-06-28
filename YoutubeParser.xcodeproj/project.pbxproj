@@ -28,7 +28,7 @@
 		3285C48F157CEFFB00096202 /* YoutubeParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YoutubeParser-Prefix.pch"; sourceTree = "<group>"; };
 		3285C490157CEFFB00096202 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3285C491157CEFFB00096202 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3285C499157CF02700096202 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HCYoutubeParser.h; sourceTree = "<group>"; };
+		3285C499157CF02700096202 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCYoutubeParser.h; sourceTree = "<group>"; };
 		3285C49A157CF02700096202 /* HCYoutubeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCYoutubeParser.m; sourceTree = "<group>"; };
 		3285C49C157D07AD00096202 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -237,6 +237,7 @@
 		3285C496157CEFFB00096202 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
@@ -248,6 +249,7 @@
 		3285C497157CEFFB00096202 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
@@ -275,6 +277,7 @@
 				3285C497157CEFFB00096202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
