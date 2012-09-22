@@ -8,7 +8,8 @@
 
 #import "HCYoutubeParser.h"
 
-#define kYoutubeInfoURL @"http://www.youtube.com/get_video_info?video_id="
+#define kYoutubeInfoURL      @"http://www.youtube.com/get_video_info?video_id="
+#define kYoutubeThumbnailURL @"http://img.youtube.com/vi/%@/%@.jpg"
 #define kUserAgent @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3"
 
 @interface NSString (QueryString)
@@ -130,6 +131,59 @@
     }
     
     return nil;
+}
+
++ (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
+                 thumbnailSize:(YoutubeThumbnail)thumbnailSize
+                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
+    
+    NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+    if (youtubeID) {
+        
+        NSString *thumbnailSizeString = nil;
+        switch (thumbnailSize) {
+            case YoutubeThumbnailDefault:
+                thumbnailSizeString = @"default";
+                break;
+            case YoutubeThumbnailDefaultMedium:
+                thumbnailSizeString = @"mqdefault";
+                break;
+            case YoutubeThumbnailDefaultHighQuality:
+                thumbnailSizeString = @"hqdefault";
+                break;
+            case YoutubeThumbnailDefaultMaxQuality:
+                thumbnailSizeString = @"maxresdefault";
+                break;
+            default:
+                thumbnailSizeString = @"default";
+                break;
+        }
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kYoutubeThumbnailURL, youtubeID, thumbnailSizeString]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+        [request setHTTPMethod:@"GET"];
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                completeBlock(image, nil);
+            }
+            else {
+                completeBlock(nil, error);
+            }
+        }];
+        
+    }
+    else {
+        
+        NSDictionary *details = @{ NSLocalizedDescriptionKey : @"Could not find a valid Youtube ID" };
+        
+        NSError *error = [NSError errorWithDomain:@"com.hiddencode.yt-parser" code:0 userInfo:details];
+        
+        completeBlock(nil, error);
+    }
 }
 
 @end
