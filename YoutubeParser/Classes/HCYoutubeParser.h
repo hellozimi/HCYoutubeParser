@@ -39,32 +39,3 @@
 + (NSDictionary *)h264videosWithYoutubeURL:(NSURL *)youtubeURL;
 
 @end
-
-
-@interface NSString (QueryString)
-
-/**
- Parses a query string
- 
- @return key value dictionary with each parameter as an array
- */
-- (NSMutableDictionary *)dictionaryFromQueryStringComponents;
-
-
-/**
- Convenient method for decoding a html encoded string
- */
-- (NSString *)stringByDecodingURLFormat;
-
-@end
-
-@interface NSURL (QueryString)
-
-/**
- Parses a query string of an NSURL
- 
- @return key value dictionary with each parameter as an array
- */
-- (NSMutableDictionary *)dictionaryForQueryString;
-
-@end
