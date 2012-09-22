@@ -91,8 +91,8 @@
     NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
     
     if (youtubeID) {
-        NSURL *youtubeURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kYoutubeInfoURL, youtubeID]];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:youtubeURL];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kYoutubeInfoURL, youtubeID]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
         [request setHTTPMethod:@"GET"];
         
