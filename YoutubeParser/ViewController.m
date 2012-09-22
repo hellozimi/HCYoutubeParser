@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "HCYoutubeParser.h"
+#import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
+
 typedef void(^DrawRectBlock)(CGRect rect);
 
 @interface HCView : UIView {
@@ -54,7 +58,9 @@ typedef void(^DrawRectBlock)(CGRect rect);
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    NSURL *_urlToLoad;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,7 +112,64 @@ typedef void(^DrawRectBlock)(CGRect rect);
     }];
     
     [self.view insertSubview:grainView atIndex:0];
+    
+    [_submitButton addTarget:self action:@selector(submitYouTubeURL:) forControlEvents:UIControlEventTouchUpInside];
+    [_playButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _playButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    _playButton.layer.shadowOffset = CGSizeMake(0, 0);
+    _playButton.layer.shadowOpacity = 0.7;
+    _playButton.layer.shadowPath = [UIBezierPath bezierPathWithRect:_playButton.bounds].CGPath;
+    _playButton.layer.shadowRadius = 2;
 }
+
+#pragma mark - Actions
+
+- (void)playVideo:(id)sender {
+    if (_urlToLoad) {
+        
+        MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:_urlToLoad];
+        [self presentModalViewController:mp animated:YES];
+        
+    }
+}
+
+- (void)submitYouTubeURL:(id)sender {
+    
+    if ([_urlTextField.text rangeOfString:@"youtube"].location) {
+        return;
+    }
+    
+    if ([_urlTextField canResignFirstResponder]) {
+        [_urlTextField resignFirstResponder];
+    }
+    _urlToLoad = nil;
+    [_playButton setImage:nil forState:UIControlStateNormal];
+    
+    NSURL *url = [NSURL URLWithString:_urlTextField.text];
+    _activityIndicator.hidden = NO;
+    [HCYoutubeParser thumbnailForYoutubeURL:url thumbnailSize:YouTubeThumbnailDefaultHighQuality completeBlock:^(UIImage *image, NSError *error) {
+        
+        if (!error) {
+            [_playButton setBackgroundImage:image forState:UIControlStateNormal];
+            _playButton.hidden = NO;
+            
+            NSDictionary *qualities = [HCYoutubeParser h264videosWithYoutubeURL:url];
+            
+            _urlToLoad = [NSURL URLWithString:[qualities objectForKey:@"medium"]];
+            
+            _activityIndicator.hidden = YES;
+            
+            [_playButton setImage:[UIImage imageNamed:@"play_button"] forState:UIControlStateNormal];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+}
+
+#pragma mark - Memory Management
 
 - (void)didReceiveMemoryWarning
 {
@@ -122,4 +185,14 @@ typedef void(^DrawRectBlock)(CGRect rect);
     
     [super viewDidUnload];
 }
+
+#pragma mark - UITextFieldDelegate Implementation
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField canResignFirstResponder]) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
 @end
