@@ -18,6 +18,8 @@
 		F4B544F2160E4CA2009EB35F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544EF160E4CA2009EB35F /* Default-568h@2x.png */; };
 		F4B544F3160E4CA2009EB35F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F0160E4CA2009EB35F /* Default.png */; };
 		F4B544F4160E4CA2009EB35F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F1160E4CA2009EB35F /* Default@2x.png */; };
+		F4B544F8160E51D6009EB35F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B544F6160E51D6009EB35F /* ViewController.m */; };
+		F4B544F9160E51D6009EB35F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F7160E51D6009EB35F /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		F4B544EF160E4CA2009EB35F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F4B544F0160E4CA2009EB35F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F4B544F1160E4CA2009EB35F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F4B544F5160E51D6009EB35F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F4B544F6160E51D6009EB35F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F4B544F7160E51D6009EB35F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +95,9 @@
 				3285C490157CEFFB00096202 /* AppDelegate.h */,
 				3285C491157CEFFB00096202 /* AppDelegate.m */,
 				3285C488157CEFFB00096202 /* Supporting Files */,
+				F4B544F5160E51D6009EB35F /* ViewController.h */,
+				F4B544F6160E51D6009EB35F /* ViewController.m */,
+				F4B544F7160E51D6009EB35F /* ViewController.xib */,
 			);
 			path = YoutubeParser;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 				F4B544F2160E4CA2009EB35F /* Default-568h@2x.png in Resources */,
 				F4B544F3160E4CA2009EB35F /* Default.png in Resources */,
 				F4B544F4160E4CA2009EB35F /* Default@2x.png in Resources */,
+				F4B544F9160E51D6009EB35F /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +202,7 @@
 				3285C48E157CEFFB00096202 /* main.m in Sources */,
 				3285C492157CEFFB00096202 /* AppDelegate.m in Sources */,
 				3285C49B157CF02700096202 /* HCYoutubeParser.m in Sources */,
+				F4B544F8160E51D6009EB35F /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
