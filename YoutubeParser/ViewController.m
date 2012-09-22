@@ -136,10 +136,6 @@ typedef void(^DrawRectBlock)(CGRect rect);
 
 - (void)submitYouTubeURL:(id)sender {
     
-    if ([_urlTextField.text rangeOfString:@"youtube"].location) {
-        return;
-    }
-    
     if ([_urlTextField canResignFirstResponder]) {
         [_urlTextField resignFirstResponder];
     }
