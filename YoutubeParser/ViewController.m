@@ -7,6 +7,44 @@
 //
 
 #import "ViewController.h"
+typedef void(^DrawRectBlock)(CGRect rect);
+
+@interface HCView : UIView {
+@private
+    DrawRectBlock block;
+}
+
+- (void)setDrawRectBlock:(DrawRectBlock)b;
+
+@end
+
+@interface UIView (DrawRect)
++ (UIView *)viewWithFrame:(CGRect)frame drawRect:(DrawRectBlock)block;
+@end
+
+@implementation HCView
+
+- (void)setDrawRectBlock:(DrawRectBlock)b {
+    block = [b copy];
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect {
+    if (block)
+        block(rect);
+}
+
+@end
+
+@implementation UIView (DrawRect)
+
++ (UIView *)viewWithFrame:(CGRect)frame drawRect:(DrawRectBlock)block {
+    HCView *view = [[HCView alloc] initWithFrame:frame];
+    [view setDrawRectBlock:block];
+    return view;
+}
+
+@end
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
