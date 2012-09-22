@@ -68,7 +68,44 @@ typedef void(^DrawRectBlock)(CGRect rect);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIView *grainView = [UIView viewWithFrame:self.view.bounds drawRect:^(CGRect rect) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        [[UIColor colorWithHue:0.000 saturation:0.000 brightness:0.773 alpha:1] setFill];
+        CGContextFillRect(context, rect);
+        
+        static CGImageRef noiseImageRef = nil;
+        static dispatch_once_t oncePredicate;
+        dispatch_once(&oncePredicate, ^{
+            NSUInteger width = 128, height = width;
+            NSUInteger size = width*height;
+            char *rgba = (char *)malloc(size); srand(115);
+            for(NSUInteger i=0; i < size; ++i){rgba[i] = rand()%256;}
+            CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+            CGContextRef bitmapContext =
+            CGBitmapContextCreate(rgba, width, height, 8, width, colorSpace, kCGImageAlphaNone);
+            CFRelease(colorSpace);
+            noiseImageRef = CGBitmapContextCreateImage(bitmapContext);
+            CFRelease(bitmapContext);
+            free(rgba);
+        });
+        
+        CGContextSaveGState(context);
+        CGContextSetAlpha(context, 0.5);
+        CGContextSetBlendMode(context, kCGBlendModeScreen);
+        
+        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+            CGFloat scaleFactor = [[UIScreen mainScreen] scale];
+            CGContextScaleCTM(context, 1/scaleFactor, 1/scaleFactor);
+        }
+        
+        CGRect imageRect = (CGRect){CGPointZero, CGImageGetWidth(noiseImageRef), CGImageGetHeight(noiseImageRef)};
+        CGContextDrawTiledImage(context, imageRect, noiseImageRef);
+        CGContextRestoreGState(context);
+    }];
+    
+    [self.view insertSubview:grainView atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
