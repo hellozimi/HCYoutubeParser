@@ -15,6 +15,9 @@
 		3285C492157CEFFB00096202 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C491157CEFFB00096202 /* AppDelegate.m */; };
 		3285C49B157CF02700096202 /* HCYoutubeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C49A157CF02700096202 /* HCYoutubeParser.m */; };
 		3285C49D157D07AD00096202 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3285C49C157D07AD00096202 /* MediaPlayer.framework */; };
+		F4B544F2160E4CA2009EB35F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544EF160E4CA2009EB35F /* Default-568h@2x.png */; };
+		F4B544F3160E4CA2009EB35F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F0160E4CA2009EB35F /* Default.png */; };
+		F4B544F4160E4CA2009EB35F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F1160E4CA2009EB35F /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +31,12 @@
 		3285C48F157CEFFB00096202 /* YoutubeParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YoutubeParser-Prefix.pch"; sourceTree = "<group>"; };
 		3285C490157CEFFB00096202 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3285C491157CEFFB00096202 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3285C499157CF02700096202 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HCYoutubeParser.h; sourceTree = "<group>"; };
+		3285C499157CF02700096202 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCYoutubeParser.h; sourceTree = "<group>"; };
 		3285C49A157CF02700096202 /* HCYoutubeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCYoutubeParser.m; sourceTree = "<group>"; };
 		3285C49C157D07AD00096202 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F4B544EF160E4CA2009EB35F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F4B544F0160E4CA2009EB35F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F4B544F1160E4CA2009EB35F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,8 @@
 		3285C472157CEFFA00096202 = {
 			isa = PBXGroup;
 			children = (
-				3285C49C157D07AD00096202 /* MediaPlayer.framework */,
 				3285C487157CEFFB00096202 /* YoutubeParser */,
+				F4B544EE160E4CA2009EB35F /* Resources */,
 				3285C480157CEFFB00096202 /* Frameworks */,
 				3285C47E157CEFFB00096202 /* Products */,
 			);
@@ -69,6 +75,7 @@
 		3285C480157CEFFB00096202 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3285C49C157D07AD00096202 /* MediaPlayer.framework */,
 				3285C481157CEFFB00096202 /* UIKit.framework */,
 				3285C483157CEFFB00096202 /* Foundation.framework */,
 				3285C485157CEFFB00096202 /* CoreGraphics.framework */,
@@ -105,6 +112,17 @@
 				3285C49A157CF02700096202 /* HCYoutubeParser.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		F4B544EE160E4CA2009EB35F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F4B544EF160E4CA2009EB35F /* Default-568h@2x.png */,
+				F4B544F0160E4CA2009EB35F /* Default.png */,
+				F4B544F1160E4CA2009EB35F /* Default@2x.png */,
+			);
+			name = Resources;
+			path = YoutubeParser/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +177,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3285C48C157CEFFB00096202 /* InfoPlist.strings in Resources */,
+				F4B544F2160E4CA2009EB35F /* Default-568h@2x.png in Resources */,
+				F4B544F3160E4CA2009EB35F /* Default.png in Resources */,
+				F4B544F4160E4CA2009EB35F /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +229,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -226,7 +247,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -240,7 +261,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -251,7 +274,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -275,6 +300,7 @@
 				3285C497157CEFFB00096202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
