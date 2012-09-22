@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "HCYoutubeParser.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "ViewController.h"
 
 @implementation AppDelegate
 
@@ -26,11 +25,12 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+    /*
     NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"http://www.youtube.com/watch?v=e71KnH_xnyQ&feature=g-all-xit"]];
     
     MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"medium"]]];
-    self.window.rootViewController = mp;
+    */
+    self.window.rootViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     
     return YES;
 }
