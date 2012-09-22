@@ -134,7 +134,7 @@
 }
 
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
-                 thumbnailSize:(YoutubeThumbnail)thumbnailSize
+                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
     
     NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
@@ -142,16 +142,16 @@
         
         NSString *thumbnailSizeString = nil;
         switch (thumbnailSize) {
-            case YoutubeThumbnailDefault:
+            case YouTubeThumbnailDefault:
                 thumbnailSizeString = @"default";
                 break;
-            case YoutubeThumbnailDefaultMedium:
+            case YouTubeThumbnailDefaultMedium:
                 thumbnailSizeString = @"mqdefault";
                 break;
-            case YoutubeThumbnailDefaultHighQuality:
+            case YouTubeThumbnailDefaultHighQuality:
                 thumbnailSizeString = @"hqdefault";
                 break;
-            case YoutubeThumbnailDefaultMaxQuality:
+            case YouTubeThumbnailDefaultMaxQuality:
                 thumbnailSizeString = @"maxresdefault";
                 break;
             default:

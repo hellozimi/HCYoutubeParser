@@ -28,11 +28,11 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    YoutubeThumbnailDefault,
-    YoutubeThumbnailDefaultMedium,
-    YoutubeThumbnailDefaultHighQuality,
-    YoutubeThumbnailDefaultMaxQuality
-} YoutubeThumbnail;
+    YouTubeThumbnailDefault,
+    YouTubeThumbnailDefaultMedium,
+    YouTubeThumbnailDefaultHighQuality,
+    YouTubeThumbnailDefaultMaxQuality
+} YouTubeThumbnail;
 
 @interface HCYoutubeParser : NSObject
 
@@ -53,7 +53,7 @@ typedef enum {
  @param completeBlock the block which is called on completion
  */
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
-                 thumbnailSize:(YoutubeThumbnail)thumbnailSize
+                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
 
 @end
