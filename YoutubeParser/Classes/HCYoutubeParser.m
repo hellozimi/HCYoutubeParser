@@ -10,7 +10,7 @@
 
 #define kYoutubeInfoURL      @"http://www.youtube.com/get_video_info?video_id="
 #define kYoutubeThumbnailURL @"http://img.youtube.com/vi/%@/%@.jpg"
-#define kUserAgent @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3"
+#define kUserAgent @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4"
 
 @interface NSString (QueryString)
 
@@ -116,10 +116,17 @@
                 for (NSString *videoEncodedString in fmtStreamMapArray) {
                     NSMutableDictionary *videoComponents = [videoEncodedString dictionaryFromQueryStringComponents];
                     NSString *type = [[[videoComponents objectForKey:@"type"] objectAtIndex:0] stringByDecodingURLFormat];
+                    NSString *signature = nil;
+                    if ([videoComponents objectForKey:@"sig"]) {
+                        signature = [[videoComponents objectForKey:@"sig"] objectAtIndex:0];
+                    }
                     
                     if ([type rangeOfString:@"mp4"].length > 0) {
                         NSString *url = [[[videoComponents objectForKey:@"url"] objectAtIndex:0] stringByDecodingURLFormat];
+                        url = [NSString stringWithFormat:@"%@&signature=%@", url, signature];
+                        
                         NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
+                        
                         NSLog(@"Found video for quality: %@", quality);
                         [videoDictionary setObject:url forKey:quality];
                     }
