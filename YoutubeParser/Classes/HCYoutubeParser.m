@@ -148,6 +148,16 @@
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
     
     NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+
+    return [self thumbnailForYoutubeID:youtubeID
+                         thumbnailSize:thumbnailSize
+                         completeBlock:completeBlock];
+}
+
++ (void)thumbnailForYoutubeID:(NSString *)youtubeID
+                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
+                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
+    
     if (youtubeID) {
         
         NSString *thumbnailSizeString = nil;
