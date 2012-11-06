@@ -90,7 +90,10 @@
 + (NSDictionary *)h264videosWithYoutubeURL:(NSURL *)youtubeURL {
     
     NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
-    
+    return [self h264videosWithYoutubeID:youtubeID];
+}
+
++ (NSDictionary *)h264videosWithYoutubeID:(NSString *)youtubeID {
     if (youtubeID) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kYoutubeInfoURL, youtubeID]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -145,6 +148,16 @@
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
     
     NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+
+    return [self thumbnailForYoutubeID:youtubeID
+                         thumbnailSize:thumbnailSize
+                         completeBlock:completeBlock];
+}
+
++ (void)thumbnailForYoutubeID:(NSString *)youtubeID
+                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
+                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
+    
     if (youtubeID) {
         
         NSString *thumbnailSizeString = nil;
