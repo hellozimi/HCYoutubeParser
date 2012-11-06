@@ -37,9 +37,9 @@ typedef enum {
 @interface HCYoutubeParser : NSObject
 
 /**
- Method for retreiving a iOS supported video link
+ Method for retreiving an iOS supported video link
  
- @param youtubeURL the the complete youtube video url
+ @param youtubeURL the complete youtube video url
  @return dictionary with the available formats for the selected video
  
  */
@@ -57,7 +57,7 @@ typedef enum {
 /**
  Method for retreiving a thumbnail for wanted youtube url
  
- @param youtubeURL the the complete youtube video url
+ @param youtubeURL the complete youtube video url
  @param thumbnailSize the wanted size of the thumbnail
  @param completeBlock the block which is called on completion
  */
