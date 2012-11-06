@@ -46,6 +46,15 @@ typedef enum {
 + (NSDictionary *)h264videosWithYoutubeURL:(NSURL *)youtubeURL;
 
 /**
+ Method for retreiving an iOS supported video link
+ 
+ @param youtubeID the id of the youtube video
+ @return dictionary with the available formats for the selected video
+ 
+ */
++ (NSDictionary *)h264videosWithYoutubeID:(NSString *)youtubeID;
+
+/**
  Method for retreiving a thumbnail for wanted youtube url
  
  @param youtubeURL the the complete youtube video url
