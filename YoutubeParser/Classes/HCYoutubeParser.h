@@ -46,6 +46,15 @@ typedef enum {
 + (NSDictionary *)h264videosWithYoutubeURL:(NSURL *)youtubeURL;
 
 /**
+ Method for retreiving an iOS supported video link
+ 
+ @param youtubeID the id of the youtube video
+ @return dictionary with the available formats for the selected video
+ 
+ */
++ (NSDictionary *)h264videosWithYoutubeID:(NSString *)youtubeID;
+
+/**
  Block based method for retreiving a iOS supported video link
  
  @param youtubeURL the the complete youtube video url
@@ -64,6 +73,17 @@ typedef enum {
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
                  thumbnailSize:(YouTubeThumbnail)thumbnailSize
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
+
+/**
+ Method for retreiving a thumbnail for wanted youtube id
+ 
+ @param youtubeURL the complete youtube video id
+ @param thumbnailSize the wanted size of the thumbnail
+ @param completeBlock the block which is called on completion
+ */
++ (void)thumbnailForYoutubeID:(NSString *)youtubeID
+                thumbnailSize:(YouTubeThumbnail)thumbnailSize
+                completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
 
 
 /**
