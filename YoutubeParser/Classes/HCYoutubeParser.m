@@ -88,6 +88,17 @@
 
 @implementation HCYoutubeParser
 
++ (NSString *)youtubeIDFromYoutubeURL:(NSURL *)youtubeURL {
+    NSString *youtubeID = nil;
+    if ([youtubeURL.host isEqualToString:@"youtu.be"]) {
+        youtubeID = [[youtubeURL pathComponents] objectAtIndex:1];
+    } else {
+        youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+    }
+    
+    return youtubeID;
+}
+
 + (NSDictionary *)h264videosWithYoutubeID:(NSString *)youtubeID {
     if (youtubeID) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kYoutubeInfoURL, youtubeID]];
@@ -140,19 +151,14 @@
 
 + (NSDictionary *)h264videosWithYoutubeURL:(NSURL *)youtubeURL {
 
-    NSString *youtubeID = nil;
-    if ([youtubeURL.host isEqualToString:@"youtu.be"]) {
-        youtubeID = [[youtubeURL pathComponents] objectAtIndex:1];
-    } else {
-        youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
-    }
-    
+    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     return [self h264videosWithYoutubeID:youtubeID];
 }
 
 + (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
                    completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock {
-    NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+    
+    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     
     if (youtubeID)
     {
@@ -213,8 +219,8 @@
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
                  thumbnailSize:(YouTubeThumbnail)thumbnailSize
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
-
-    NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+    
+    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     return [self thumbnailForYoutubeID:youtubeID thumbnailSize:thumbnailSize completeBlock:completeBlock];
 }
 
@@ -270,7 +276,7 @@
 + (void)detailsForYouTubeURL:(NSURL *)youtubeURL
                completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock
 {
-    NSString *youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
+    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     if (youtubeID)
     {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kYoutubeDataURL, youtubeID]]];

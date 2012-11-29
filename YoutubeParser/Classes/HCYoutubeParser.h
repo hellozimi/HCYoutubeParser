@@ -37,6 +37,14 @@ typedef enum {
 @interface HCYoutubeParser : NSObject
 
 /**
+ Method for retrieving the youtube ID from a youtube URL
+ 
+ @param youtubeURL the the complete youtube video url, either youtu.be or youtube.com
+ @return string with desired youtube id
+ */
++ (NSString *)youtubeIDFromYoutubeURL:(NSURL *)youtubeURL;
+
+/**
  Method for retreiving a iOS supported video link
  
  @param youtubeURL the the complete youtube video url
