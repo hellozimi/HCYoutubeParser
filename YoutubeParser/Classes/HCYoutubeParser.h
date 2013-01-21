@@ -34,7 +34,29 @@ typedef enum {
     YouTubeThumbnailDefaultMaxQuality
 } YouTubeThumbnail;
 
+typedef void (^HCYoutubeParserQueueCompletionBlock)(NSOperationQueue *queueCompletionBlock);
+
+#define kHCYoutubeParserQueueCompleted @"kHCYoutubeParserQueueCompleted"
+
 @interface HCYoutubeParser : NSObject
+/**
+ You can specifiy a block which gets called once the queue is empty again
+ */
+@property (nonatomic, strong) HCYoutubeParserQueueCompletionBlock queueCompletionBlock;
+
+/**
+ In case you want to block your current thread with calling NSOperationQueue's
+ - (void)waitUntilAllOperationsAreFinished method, use this queue.
+ */
+@property (readonly, strong) NSOperationQueue *youtubeRequestQueue;
+
+/**
+ To make use of the global notification, we have to use 
+ only one queue which is tied to this shared instance.
+ 
+ @return shared instance of HCYoutubeParser
+ */
++ (HCYoutubeParser *)sharedInstance;
 
 /**
  Method for retrieving the youtube ID from a youtube URL
@@ -71,6 +93,17 @@ typedef enum {
  */
 + (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
                    completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock;
+
+/**
+ Block based method for retreiving a iOS supported video link
+ 
+ @param youtubeURL the the complete youtube video url
+ @param completeBlock the block which is called on completion
+ 
+ */
+- (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
+                   completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock;
+
 /**
  Method for retreiving a thumbnail for wanted youtube url
  
@@ -79,6 +112,17 @@ typedef enum {
  @param completeBlock the block which is called on completion
  */
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
+                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
+                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
+
+/**
+ Method for retreiving a thumbnail for wanted youtube url
+ 
+ @param youtubeURL the the complete youtube video url
+ @param thumbnailSize the wanted size of the thumbnail
+ @param completeBlock the block which is called on completion
+ */
+- (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
                  thumbnailSize:(YouTubeThumbnail)thumbnailSize
                  completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
 
@@ -93,6 +137,17 @@ typedef enum {
                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
 
+/**
+ Method for retreiving a thumbnail for wanted youtube id
+ 
+ @param youtubeURL the complete youtube video id
+ @param thumbnailSize the wanted size of the thumbnail
+ @param completeBlock the block which is called on completion
+ */
+- (void)thumbnailForYoutubeID:(NSString *)youtubeID
+				thumbnailSize:(YouTubeThumbnail)thumbnailSize
+				completeBlock:(void (^)(UIImage *, NSError *))completeBlock;
+
 
 /**
  Method for retreiving all the details of a youtube video
@@ -103,4 +158,12 @@ typedef enum {
  */
 + (void)detailsForYouTubeURL:(NSURL *)youtubeURL
                completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock;
+
+/**
+ By default we only handle 2 NSURLRequests at the same time, 
+ if you want more you can modify that
+ 
+ @param operation Number of concurrent NSURLRequests running at maximum
+ */
+- (void)setMaxConcurrentOperationCount:(NSUInteger)operationCount;
 @end

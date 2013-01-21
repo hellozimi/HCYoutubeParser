@@ -86,7 +86,61 @@
 
 @end
 
+@interface HCYoutubeParser()
+@property (nonatomic, strong) NSOperationQueue *youtubeRequestQueue;
+
+@end
+
 @implementation HCYoutubeParser
+static NSString * kHCYoutubeParserQueueOperationCountChanged = @"queue operationcount changed";
+
++ (HCYoutubeParser *)sharedInstance {
+    static HCYoutubeParser *sharedInstance;
+    @synchronized(self) {
+        if (sharedInstance == nil) {
+            sharedInstance = [[HCYoutubeParser alloc] init];
+        }
+    }
+    return sharedInstance;
+}
+
+- (id)init {
+	self = [super init];
+	if (self) {
+		_youtubeRequestQueue = [[NSOperationQueue alloc] init];
+		_youtubeRequestQueue.maxConcurrentOperationCount = 2;
+		[_youtubeRequestQueue addObserver:self forKeyPath:@"operationCount" options:0 context:&kHCYoutubeParserQueueOperationCountChanged];
+	}
+	return self;
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+					   ofObject:(id)object
+                         change:(NSDictionary *)change
+						context:(void *)context {
+    if (context == &kHCYoutubeParserQueueOperationCountChanged
+		&& object == self.youtubeRequestQueue
+		&& [keyPath isEqualToString:@"operationCount"])
+	{
+        if (self.youtubeRequestQueue.operationCount == 0) {
+			if (self.queueCompletionBlock) {
+				self.queueCompletionBlock(self.youtubeRequestQueue);
+			}
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:kHCYoutubeParserQueueCompleted
+																object:nil
+															  userInfo:@{@"queue" : self.youtubeRequestQueue}];
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object
+                               change:change context:context];
+    }
+}
+
+- (void)setMaxConcurrentOperationCount:(NSUInteger)operationCount {
+	self.youtubeRequestQueue.maxConcurrentOperationCount = operationCount;
+}
 
 + (NSString *)youtubeIDFromYoutubeURL:(NSURL *)youtubeURL {
     NSString *youtubeID = nil;
@@ -136,7 +190,6 @@
                         
                         NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
                         
-                        NSLog(@"Found video for quality: %@", quality);
                         [videoDictionary setObject:url forKey:quality];
                     }
                 }
@@ -157,8 +210,14 @@
 
 + (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
                    completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock {
+	HCYoutubeParser *ytParser = [HCYoutubeParser sharedInstance];
+	[ytParser h264videosWithYoutubeURL:youtubeURL completeBlock:completeBlock];
+}
+
+- (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
+                   completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock {
     
-    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
+    NSString *youtubeID = [HCYoutubeParser youtubeIDFromYoutubeURL:youtubeURL];
     
     if (youtubeID)
     {
@@ -168,9 +227,7 @@
         [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
         [request setHTTPMethod:@"GET"];
         
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [NSURLConnection sendAsynchronousRequest:request queue:self.youtubeRequestQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             if (!error)
             {
                 NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -200,7 +257,6 @@
                             
                             NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
                             
-                            NSLog(@"Found video for quality: %@", quality);
                             [videoDictionary setObject:url forKey:quality];
                         }
                     }
@@ -225,6 +281,11 @@
 }
 
 + (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(UIImage *, NSError *))completeBlock {
+	HCYoutubeParser *ytParser = [HCYoutubeParser sharedInstance];
+	[ytParser thumbnailForYoutubeID:youtubeID thumbnailSize:thumbnailSize completeBlock:completeBlock];
+}
+
+- (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(UIImage *, NSError *))completeBlock {
     if (youtubeID) {
         
         NSString *thumbnailSizeString = nil;
@@ -250,9 +311,12 @@
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
         [request setHTTPMethod:@"GET"];
+		
+		[self.youtubeRequestQueue isSuspended];
         
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [NSURLConnection sendAsynchronousRequest:request
+										   queue:self.youtubeRequestQueue
+							   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
                 completeBlock(image, nil);
@@ -274,15 +338,20 @@
 }
 
 + (void)detailsForYouTubeURL:(NSURL *)youtubeURL
+               completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock {
+	HCYoutubeParser *ytParser = [HCYoutubeParser sharedInstance];
+	[ytParser detailsForYouTubeURL:youtubeURL completeBlock:completeBlock];
+}
+
+- (void)detailsForYouTubeURL:(NSURL *)youtubeURL
                completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock
 {
-    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
+    NSString *youtubeID = [HCYoutubeParser youtubeIDFromYoutubeURL:youtubeURL];
     if (youtubeID)
     {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kYoutubeDataURL, youtubeID]]];
         
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [NSURLConnection sendAsynchronousRequest:request queue:self.youtubeRequestQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             if (!error) {
                 NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                      options:kNilOptions
