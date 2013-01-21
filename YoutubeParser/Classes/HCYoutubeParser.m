@@ -190,7 +190,6 @@ static NSString * kHCYoutubeParserQueueOperationCountChanged = @"queue operation
                         
                         NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
                         
-                        NSLog(@"Found video for quality: %@", quality);
                         [videoDictionary setObject:url forKey:quality];
                     }
                 }
@@ -258,7 +257,6 @@ static NSString * kHCYoutubeParserQueueOperationCountChanged = @"queue operation
                             
                             NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
                             
-                            NSLog(@"Found video for quality: %@", quality);
                             [videoDictionary setObject:url forKey:quality];
                         }
                     }
