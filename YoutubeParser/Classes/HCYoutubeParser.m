@@ -204,13 +204,16 @@
                             [videoDictionary setObject:url forKey:quality];
                         }
                     }
-                    
-                    completeBlock(videoDictionary, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completeBlock(videoDictionary, nil);
+                    });
                 }
             }
             else
             {
-                completeBlock(nil, error);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completeBlock(nil, error);
+                });
             }
         }];
     }
