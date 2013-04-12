@@ -92,7 +92,9 @@
     NSString *youtubeID = nil;
     if ([youtubeURL.host isEqualToString:@"youtu.be"]) {
         youtubeID = [[youtubeURL pathComponents] objectAtIndex:1];
-    } else {
+    } else if([youtubeURL.absoluteString rangeOfString:@"www.youtube.com/embed"].location != NSNotFound){
+        youtubeID = [[youtubeURL pathComponents] objectAtIndex:2];
+    }else {
         youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
     }
     
@@ -225,6 +227,40 @@
     
     NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     return [self thumbnailForYoutubeID:youtubeID thumbnailSize:thumbnailSize completeBlock:completeBlock];
+}
+
++ (NSURL *)thumbnailUrlForYoutubeURL:(NSURL *)youtubeURL
+                         thumbnailSize:(YouTubeThumbnail)thumbnailSize{
+  NSURL *url = nil;
+  
+  if(youtubeURL){
+    
+    NSString *thumbnailSizeString = nil;
+    switch (thumbnailSize) {
+      case YouTubeThumbnailDefault:
+        thumbnailSizeString = @"default";
+        break;
+      case YouTubeThumbnailDefaultMedium:
+        thumbnailSizeString = @"mqdefault";
+        break;
+      case YouTubeThumbnailDefaultHighQuality:
+        thumbnailSizeString = @"hqdefault";
+        break;
+      case YouTubeThumbnailDefaultMaxQuality:
+        thumbnailSizeString = @"maxresdefault";
+        break;
+      default:
+        thumbnailSizeString = @"default";
+        break;
+    }
+    
+    NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
+    
+    url = [NSURL URLWithString:[NSString stringWithFormat:kYoutubeThumbnailURL, youtubeID, thumbnailSizeString]];
+    
+  }
+  
+  return  url;
 }
 
 + (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(UIImage *, NSError *))completeBlock {
