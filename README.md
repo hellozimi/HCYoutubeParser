@@ -28,3 +28,5 @@ MPMoviePlayerViewController *mp = [[[MPMoviePlayerViewController alloc] initWith
 
 
 ```
+
+Warning: This is not approved by the ToC of YouTube. Use at own risk.
