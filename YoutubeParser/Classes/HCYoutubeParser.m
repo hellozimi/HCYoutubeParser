@@ -128,18 +128,21 @@
                     NSMutableDictionary *videoComponents = [videoEncodedString dictionaryFromQueryStringComponents];
                     NSString *type = [[[videoComponents objectForKey:@"type"] objectAtIndex:0] stringByDecodingURLFormat];
                     NSString *signature = nil;
-                    if ([videoComponents objectForKey:@"sig"]) {
-                        signature = [[videoComponents objectForKey:@"sig"] objectAtIndex:0];
-                    }
-                    
-                    if ([type rangeOfString:@"mp4"].length > 0) {
-                        NSString *url = [[[videoComponents objectForKey:@"url"] objectAtIndex:0] stringByDecodingURLFormat];
-                        url = [NSString stringWithFormat:@"%@&signature=%@", url, signature];
+                  
+                    if (![videoComponents objectForKey:@"stereo3d"]) {
+                        if ([videoComponents objectForKey:@"sig"]) {
+                            signature = [[videoComponents objectForKey:@"sig"] objectAtIndex:0];
+                        }
                         
-                        NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
-                        
-                        NSLog(@"Found video for quality: %@", quality);
-                        [videoDictionary setObject:url forKey:quality];
+                        if (signature && [type rangeOfString:@"mp4"].length > 0) {
+                            NSString *url = [[[videoComponents objectForKey:@"url"] objectAtIndex:0] stringByDecodingURLFormat];
+                            url = [NSString stringWithFormat:@"%@&signature=%@", url, signature];
+                            
+                            NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
+                            
+                            NSLog(@"Found video for quality: %@", quality);
+                            [videoDictionary setObject:url forKey:quality];
+                        }
                     }
                 }
                 
