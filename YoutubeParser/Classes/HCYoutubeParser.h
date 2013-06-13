@@ -95,7 +95,7 @@ typedef enum {
 /**
  Method for retreiving a thumbnail for wanted youtube id
  
- @param youtubeURL the complete youtube video id
+ @param youtubeID the complete youtube video id
  @param thumbnailSize the wanted size of the thumbnail
  @param completeBlock the block which is called on completion
  */
@@ -107,10 +107,22 @@ typedef enum {
 /**
  Method for retreiving all the details of a youtube video
  
- @param youtubeURL the the complete youtube video url
+ @param youtubeURL the complete youtube video url
  @param completeBlock the block which is called on completion
  
  */
 + (void)detailsForYouTubeURL:(NSURL *)youtubeURL
                completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock;
+
+
+/**
+ Method for retreiving all the details of a youtube video
+ 
+ @param youtubeID the complete youtube video id
+ @param completeBlock the block which is called on completion
+ 
+ */
++ (void)detailsForYouTubeID:(NSString *)youtubeID
+              completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock;
+
 @end
