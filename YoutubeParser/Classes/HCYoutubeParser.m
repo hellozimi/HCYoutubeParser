@@ -139,9 +139,11 @@
                             url = [NSString stringWithFormat:@"%@&signature=%@", url, signature];
                             
                             NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
-                            
-                            NSLog(@"Found video for quality: %@", quality);
-                            [videoDictionary setObject:url forKey:quality];
+                            if([videoDictionary valueForKey:quality] == nil) { 
+                             
+                               NSLog(@"Found video for quality: %@", quality);
+                               [videoDictionary setObject:url forKey:quality];
+                            }
                         }
                     }
                 }
@@ -205,8 +207,11 @@
                             
                             NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
                             
-                            NSLog(@"Found video for quality: %@", quality);
-                            [videoDictionary setObject:url forKey:quality];
+                            if([videoDictionary valueForKey:quality] == nil) { 
+                             
+                               NSLog(@"Found video for quality: %@", quality);
+                               [videoDictionary setObject:url forKey:quality];
+                            }
                         }
                     }
                     dispatch_async(dispatch_get_main_queue(), ^{
