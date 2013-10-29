@@ -101,7 +101,7 @@ typedef void(^DrawRectBlock)(CGRect rect);
         CGContextSetAlpha(context, 0.5);
         CGContextSetBlendMode(context, kCGBlendModeScreen);
         
-        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
             CGFloat scaleFactor = [[UIScreen mainScreen] scale];
             CGContextScaleCTM(context, 1/scaleFactor, 1/scaleFactor);
         }
@@ -149,14 +149,27 @@ typedef void(^DrawRectBlock)(CGRect rect);
         if (!error) {
             [_playButton setBackgroundImage:image forState:UIControlStateNormal];
             _playButton.hidden = NO;
-            
-            NSDictionary *qualities = [HCYoutubeParser h264videosWithYoutubeURL:url];
-            
-            _urlToLoad = [NSURL URLWithString:[qualities objectForKey:@"medium"]];
-            
-            _activityIndicator.hidden = YES;
-            
-            [_playButton setImage:[UIImage imageNamed:@"play_button"] forState:UIControlStateNormal];
+            [HCYoutubeParser h264videosWithYoutubeURL:url completeBlock:^(NSDictionary *videoDictionary, NSError *error) {
+                
+                _activityIndicator.hidden = YES;
+                
+                NSDictionary *qualities = videoDictionary;
+                
+                NSString *URLString = nil;
+                if ([qualities objectForKey:@"low"] != nil) {
+                    URLString = [qualities objectForKey:@"low"];
+                }
+                else if ([qualities objectForKey:@"live"] != nil) {
+                    URLString = [qualities objectForKey:@"live"];
+                }
+                else {
+                    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't find youtube video" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] show];
+                    return;
+                }
+                _urlToLoad = [NSURL URLWithString:URLString];
+                
+                [_playButton setImage:[UIImage imageNamed:@"play_button"] forState:UIControlStateNormal];
+            }];
         }
         else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
