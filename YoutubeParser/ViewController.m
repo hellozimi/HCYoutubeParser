@@ -148,16 +148,17 @@ typedef void(^DrawRectBlock)(CGRect rect);
         
         if (!error) {
             [_playButton setBackgroundImage:image forState:UIControlStateNormal];
-            _playButton.hidden = NO;
+            
             [HCYoutubeParser h264videosWithYoutubeURL:url completeBlock:^(NSDictionary *videoDictionary, NSError *error) {
                 
+                _playButton.hidden = NO;
                 _activityIndicator.hidden = YES;
                 
                 NSDictionary *qualities = videoDictionary;
                 
                 NSString *URLString = nil;
-                if ([qualities objectForKey:@"low"] != nil) {
-                    URLString = [qualities objectForKey:@"low"];
+                if ([qualities objectForKey:@"small"] != nil) {
+                    URLString = [qualities objectForKey:@"small"];
                 }
                 else if ([qualities objectForKey:@"live"] != nil) {
                     URLString = [qualities objectForKey:@"live"];
