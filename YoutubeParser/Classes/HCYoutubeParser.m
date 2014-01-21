@@ -137,6 +137,9 @@
                                 url = [NSString stringWithFormat:@"%@&signature=%@", url, signature];
 
                                 NSString *quality = [[[videoComponents objectForKey:@"quality"] objectAtIndex:0] stringByDecodingURLFormat];
+                                if ([videoComponents objectForKey:@"stereo3d"] && [[videoComponents objectForKey:@"stereo3d"] boolValue]) {
+                                    quality = [quality stringByAppendingString:@"-stereo3d"];
+                                }
                                 if([videoDictionary valueForKey:quality] == nil) {
                                     [videoDictionary setObject:url forKey:quality];
                                 }
