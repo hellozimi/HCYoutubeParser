@@ -89,11 +89,16 @@
 
 + (NSString *)youtubeIDFromYoutubeURL:(NSURL *)youtubeURL {
     NSString *youtubeID = nil;
+    
+    NSLog(@"%@\n%@\n%@", youtubeURL.host, [youtubeURL dictionaryForQueryString], [youtubeURL pathComponents]);
+    
     if ([youtubeURL.host isEqualToString:@"youtu.be"]) {
         youtubeID = [[youtubeURL pathComponents] objectAtIndex:1];
     } else if([youtubeURL.absoluteString rangeOfString:@"www.youtube.com/embed"].location != NSNotFound){
         youtubeID = [[youtubeURL pathComponents] objectAtIndex:2];
-    }else {
+    } else if([youtubeURL.host isEqualToString:@"youtube.googleapis.com"]) {
+        youtubeID = [[youtubeURL pathComponents] objectAtIndex:2];
+    } else {
         youtubeID = [[[youtubeURL dictionaryForQueryString] objectForKey:@"v"] objectAtIndex:0];
     }
     return youtubeID;
