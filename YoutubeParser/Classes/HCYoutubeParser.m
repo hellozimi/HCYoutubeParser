@@ -128,8 +128,8 @@
                         NSString *signature = nil;
 
                         if (![videoComponents objectForKey:@"stereo3d"]) {
-                            if ([videoComponents objectForKey:@"sig"]) {
-                                signature = [[videoComponents objectForKey:@"sig"] objectAtIndex:0];
+                            if ([videoComponents objectForKey:@"itag"]) {
+                                signature = [[videoComponents objectForKey:@"itag"] objectAtIndex:0];
                             }
 
                             if (signature && [type rangeOfString:@"mp4"].length > 0) {
