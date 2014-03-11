@@ -151,13 +151,14 @@
                     if (videoDictionary.count > 0)
                     {
                         NSMutableDictionary *optionsDict = [NSMutableDictionary dictionary];
-                        NSArray *keys = @[@"author", // youtube channel name
-                                          @"avg_rating", // average ratings on yt when downloaded
-                                          @"iurl", @"iurlmaxres", @"iurlsd", // thumbnail urls
-                                          @"keywords", // author defined keywords
+                        NSArray *keys = @[//@"author", // youtube channel name
+                                          //@"avg_rating", // average ratings on yt when downloaded
+                                          @"iurl", //@"iurlmaxres", @"iurlsd", // thumbnail urls
+                                          //@"keywords", // author defined keywords
                                           @"length_seconds", // total duration in seconds
                                           @"title", // video title
-                                          @"video_id"]; // youtube id
+                                          //@"video_id"
+                                          ]; // youtube id
                         
                         for (NSString *key in keys)
                         {
