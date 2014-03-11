@@ -128,8 +128,8 @@
                         NSString *signature = nil;
 
                         if (![videoComponents objectForKey:@"stereo3d"]) {
-                            if ([videoComponents objectForKey:@"sig"]) {
-                                signature = [[videoComponents objectForKey:@"sig"] objectAtIndex:0];
+                            if ([videoComponents objectForKey:@"itag"]) {
+                                signature = [[videoComponents objectForKey:@"itag"] objectAtIndex:0];
                             }
 
                             if (signature && [type rangeOfString:@"mp4"].length > 0) {
@@ -146,6 +146,28 @@
                             }
                         }
                     }
+                    
+                    // add some extra information about this video to the dictionary we pass back to save on the amounts of network requests
+                    if (videoDictionary.count > 0)
+                    {
+                        NSMutableDictionary *optionsDict = [NSMutableDictionary dictionary];
+                        NSArray *keys = @[//@"author", // youtube channel name
+                                          //@"avg_rating", // average ratings on yt when downloaded
+                                          @"iurl", //@"iurlmaxres", @"iurlsd", // thumbnail urls
+                                          //@"keywords", // author defined keywords
+                                          @"length_seconds", // total duration in seconds
+                                          @"title", // video title
+                                          //@"video_id"
+                                          ]; // youtube id
+                        
+                        for (NSString *key in keys)
+                        {
+                            [optionsDict setObject:parts[key][0] forKey:key]; // [0] because we want the object and not the array
+                        }
+                        
+                        [videoDictionary setObject:optionsDict forKey:@"moreInfo"];
+                    }
+                    
                     return videoDictionary;
                 }
                 // Check for live data
