@@ -129,7 +129,7 @@ typedef void(^DrawRectBlock)(CGRect rect);
     if (_urlToLoad) {
         
         MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:_urlToLoad];
-        [self presentModalViewController:mp animated:YES];
+        [self presentViewController:mp animated:YES completion:NULL];
         
     }
 }
