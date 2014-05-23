@@ -46,7 +46,7 @@
 - (NSString *)stringByDecodingURLFormat {
     NSString *result = [self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
+    return result ?: @"";
 }
 
 - (NSMutableDictionary *)dictionaryFromQueryStringComponents {
