@@ -8,9 +8,9 @@
 
 #import "HCYoutubeParser.h"
 
-#define kYoutubeInfoURL      @"http://www.youtube.com/get_video_info?video_id="
-#define kYoutubeThumbnailURL @"http://img.youtube.com/vi/%@/%@.jpg"
-#define kYoutubeDataURL      @"http://gdata.youtube.com/feeds/api/videos/%@?alt=json"
+#define kYoutubeInfoURL      @"https://www.youtube.com/get_video_info?video_id="
+#define kYoutubeThumbnailURL @"https://img.youtube.com/vi/%@/%@.jpg"
+#define kYoutubeDataURL      @"https://gdata.youtube.com/feeds/api/videos/%@?alt=json"
 #define kUserAgent @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4"
 
 @interface NSString (QueryString)
