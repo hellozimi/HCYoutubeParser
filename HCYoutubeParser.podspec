@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "HCYoutubeParser"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.license      = 'Public Domain'
-  
+
   s.ios.deployment_target = '7.0'
   s.tvos.deployment_target = '9.0'
 
@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'YoutubeParser/Classes'
   s.public_header_files = 'YoutubeParser/Classes/*.h'
-  
+
   s.requires_arc = true
 end
