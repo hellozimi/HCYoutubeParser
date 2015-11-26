@@ -50,28 +50,28 @@
 }
 
 - (NSMutableDictionary *)dictionaryFromQueryStringComponents {
-
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
+    
     for (NSString *keyValue in [self componentsSeparatedByString:@"&"]) {
         NSArray *keyValueArray = [keyValue componentsSeparatedByString:@"="];
         if ([keyValueArray count] < 2) {
             continue;
         }
-
+        
         NSString *key = [[keyValueArray objectAtIndex:0] stringByDecodingURLFormat];
         NSString *value = [[keyValueArray objectAtIndex:1] stringByDecodingURLFormat];
-
+        
         NSMutableArray *results = [parameters objectForKey:key];
-
+        
         if(!results) {
             results = [NSMutableArray arrayWithCapacity:1];
             [parameters setObject:results forKey:key];
         }
-
+        
         [results addObject:value];
     }
-
+    
     return parameters;
 }
 
@@ -222,7 +222,7 @@
 
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
                  thumbnailSize:(YouTubeThumbnail)thumbnailSize
-                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
+                 completeBlock:(void(^)(HCImage *image, NSError *error))completeBlock {
     NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     return [self thumbnailForYoutubeID:youtubeID thumbnailSize:thumbnailSize completeBlock:completeBlock];
 }
@@ -230,7 +230,7 @@
 + (NSURL *)thumbnailUrlForYoutubeURL:(NSURL *)youtubeURL
                        thumbnailSize:(YouTubeThumbnail)thumbnailSize{
     NSURL *url = nil;
-
+    
     if(youtubeURL){
         NSString *thumbnailSizeString = nil;
         switch (thumbnailSize) {
@@ -253,11 +253,11 @@
         NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
         url = [NSURL URLWithString:[NSString stringWithFormat:kYoutubeThumbnailURL, youtubeID, thumbnailSizeString]];
     }
-
+    
     return  url;
 }
 
-+ (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(UIImage *, NSError *))completeBlock {
++ (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(HCImage *, NSError *))completeBlock {
     if (youtubeID) {
         NSString *thumbnailSizeString = nil;
         switch (thumbnailSize) {
@@ -277,16 +277,16 @@
                 thumbnailSizeString = @"default";
                 break;
         }
-
+        
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kYoutubeThumbnailURL, youtubeID, thumbnailSizeString]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
         [request setHTTPMethod:@"GET"];
-
+        
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
             if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
+                HCImage *image = [[HCImage alloc] initWithData:data];
                 completeBlock(image, nil);
             }
             else {
@@ -307,7 +307,7 @@
     if (youtubeID)
     {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kYoutubeDataURL, youtubeID]]];
-
+        
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
                 NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
