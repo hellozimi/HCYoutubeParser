@@ -222,7 +222,7 @@
 
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
                  thumbnailSize:(YouTubeThumbnail)thumbnailSize
-                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock {
+                 completeBlock:(void(^)(HCImage *image, NSError *error))completeBlock {
     NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     return [self thumbnailForYoutubeID:youtubeID thumbnailSize:thumbnailSize completeBlock:completeBlock];
 }
@@ -257,7 +257,7 @@
     return  url;
 }
 
-+ (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(UIImage *, NSError *))completeBlock {
++ (void)thumbnailForYoutubeID:(NSString *)youtubeID thumbnailSize:(YouTubeThumbnail)thumbnailSize completeBlock:(void (^)(HCImage *, NSError *))completeBlock {
     if (youtubeID) {
         NSString *thumbnailSizeString = nil;
         switch (thumbnailSize) {
@@ -286,7 +286,7 @@
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
             if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
+                HCImage *image = [[HCImage alloc] initWithData:data];
                 completeBlock(image, nil);
             }
             else {

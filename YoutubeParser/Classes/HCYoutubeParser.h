@@ -26,7 +26,17 @@
 
 
 #import <Foundation/Foundation.h>
+#if	TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#else
+#import <Cocoa/Cocoa.h>
+#endif
+
+#if TARGET_OS_IPHONE
+#define HCImage UIImage
+#else
+#define HCImage NSImage
+#endif
 
 typedef enum {
     YouTubeThumbnailDefault,
@@ -90,8 +100,8 @@ typedef enum {
  @param completeBlock the block which is called on completion
  */
 + (void)thumbnailForYoutubeURL:(NSURL *)youtubeURL
-                 thumbnailSize:(YouTubeThumbnail)thumbnailSize
-                 completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
+				 thumbnailSize:(YouTubeThumbnail)thumbnailSize
+				 completeBlock:(void(^)(HCImage *image, NSError *error))completeBlock;
 
 /**
  Method for retreiving a thumbnail for wanted youtube id
@@ -101,8 +111,8 @@ typedef enum {
  @param completeBlock the block which is called on completion
  */
 + (void)thumbnailForYoutubeID:(NSString *)youtubeID
-                thumbnailSize:(YouTubeThumbnail)thumbnailSize
-                completeBlock:(void(^)(UIImage *image, NSError *error))completeBlock;
+				thumbnailSize:(YouTubeThumbnail)thumbnailSize
+				completeBlock:(void(^)(HCImage *image, NSError *error))completeBlock;
 
 
 /**
