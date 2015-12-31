@@ -175,20 +175,14 @@
                         }
                         
                         data = videoDictionary;
-                        dispatch_semaphore_signal(semaphore);
                     }
                     // Check for live data
                     else if ([parts objectForKey:@"live_playback"] != nil && [parts objectForKey:@"hlsvp"] != nil && [[parts objectForKey:@"hlsvp"] count] > 0) {
                         data = @{ @"live": [parts objectForKey:@"hlsvp"][0] };
-                        dispatch_semaphore_signal(semaphore);
-                        
-                    } else {
-                        
-                        //No data at all, just unlock the sema
-                        dispatch_semaphore_signal(semaphore);
                     }
                 }
             }
+            dispatch_semaphore_signal(semaphore);
         }] resume];
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         
