@@ -298,6 +298,13 @@
 + (void)detailsForYouTubeURL:(NSURL *)youtubeURL
                completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock {
     NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
+    
+    return [self detailsForYouTubeID:youtubeID completeBlock:completeBlock];
+}
+
++ (void)detailsForYouTubeID:(NSString *)youtubeID
+              completeBlock:(void(^)(NSDictionary *details, NSError *error))completeBlock
+{
     if (youtubeID)
     {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kYoutubeDataURL, youtubeID]]];
