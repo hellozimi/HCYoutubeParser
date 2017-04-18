@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "HCYoutubeParser.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <HCYoutubeParser/HCYoutubeParser.h>
 
 typedef void(^DrawRectBlock)(CGRect rect);
 

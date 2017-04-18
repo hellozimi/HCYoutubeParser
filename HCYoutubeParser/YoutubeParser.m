@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Hiddencode.me. All rights reserved.
 //
 
-#import "HCYoutubeParser.h"
+#import "YoutubeParser.h"
 
 #define kYoutubeInfoURL      @"https://www.youtube.com/get_video_info?video_id="
 #define kYoutubeThumbnailURL @"https://img.youtube.com/vi/%@/%@.jpg"

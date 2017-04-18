@@ -12,15 +12,17 @@
 		326A0AB81BEA0CCE002D323A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326A0AB71BEA0CCE002D323A /* ViewController.m */; };
 		326A0ABB1BEA0CCE002D323A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326A0AB91BEA0CCE002D323A /* Main.storyboard */; };
 		326A0ABD1BEA0CCE002D323A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326A0ABC1BEA0CCE002D323A /* Assets.xcassets */; };
-		326A0AC21BEA0CF9002D323A /* HCYoutubeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C49A157CF02700096202 /* HCYoutubeParser.m */; };
 		3285C482157CEFFB00096202 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3285C481157CEFFB00096202 /* UIKit.framework */; };
 		3285C484157CEFFB00096202 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3285C483157CEFFB00096202 /* Foundation.framework */; };
 		3285C486157CEFFB00096202 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3285C485157CEFFB00096202 /* CoreGraphics.framework */; };
 		3285C48C157CEFFB00096202 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3285C48A157CEFFB00096202 /* InfoPlist.strings */; };
 		3285C48E157CEFFB00096202 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C48D157CEFFB00096202 /* main.m */; };
 		3285C492157CEFFB00096202 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C491157CEFFB00096202 /* AppDelegate.m */; };
-		3285C49B157CF02700096202 /* HCYoutubeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3285C49A157CF02700096202 /* HCYoutubeParser.m */; };
 		3285C49D157D07AD00096202 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3285C49C157D07AD00096202 /* MediaPlayer.framework */; };
+		72D0E8E11C8214A6004A72AA /* HCYoutubeParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D0E8DE1C821485004A72AA /* HCYoutubeParser.framework */; };
+		72D0E8E21C8214A6004A72AA /* HCYoutubeParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72D0E8DE1C821485004A72AA /* HCYoutubeParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		72D0E8E61C8214A9004A72AA /* HCYoutubeParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D0E8E01C821485004A72AA /* HCYoutubeParser.framework */; };
+		72D0E8E71C8214A9004A72AA /* HCYoutubeParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72D0E8E01C821485004A72AA /* HCYoutubeParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F449DE29160E5651001BADA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F449DE27160E5651001BADA4 /* ViewController.m */; };
 		F449DE2A160E5651001BADA4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F449DE28160E5651001BADA4 /* ViewController.xib */; };
 		F449DE2F160E68F9001BADA4 /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F449DE2C160E68F9001BADA4 /* button@2x.png */; };
@@ -36,6 +38,62 @@
 		F4B544F3160E4CA2009EB35F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F0160E4CA2009EB35F /* Default.png */; };
 		F4B544F4160E4CA2009EB35F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B544F1160E4CA2009EB35F /* Default@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72D0E8DD1C821485004A72AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72D0E8991C821326004A72AA;
+			remoteInfo = HCYoutubeParser;
+		};
+		72D0E8DF1C821485004A72AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72D0E8CF1C8213C7004A72AA;
+			remoteInfo = "HCYoutubeParser tvOS";
+		};
+		72D0E8E31C8214A6004A72AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 72D0E8981C821326004A72AA;
+			remoteInfo = HCYoutubeParser;
+		};
+		72D0E8E81C8214A9004A72AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 72D0E8C41C8213C7004A72AA;
+			remoteInfo = "HCYoutubeParser tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72D0E8E51C8214A6004A72AA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				72D0E8E21C8214A6004A72AA /* HCYoutubeParser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72D0E8EA1C8214A9004A72AA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				72D0E8E71C8214A9004A72AA /* HCYoutubeParser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		326A0AAE1BEA0CCE002D323A /* youtubeparser-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "youtubeparser-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,9 +115,8 @@
 		3285C48F157CEFFB00096202 /* YoutubeParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YoutubeParser-Prefix.pch"; sourceTree = "<group>"; };
 		3285C490157CEFFB00096202 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3285C491157CEFFB00096202 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3285C499157CF02700096202 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCYoutubeParser.h; sourceTree = "<group>"; };
-		3285C49A157CF02700096202 /* HCYoutubeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = HCYoutubeParser.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		3285C49C157D07AD00096202 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HCYoutubeParser.xcodeproj; path = ../HCYoutubeParser.xcodeproj; sourceTree = "<group>"; };
 		F449DE26160E5651001BADA4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F449DE27160E5651001BADA4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F449DE28160E5651001BADA4 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -82,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D0E8E61C8214A9004A72AA /* HCYoutubeParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D0E8E11C8214A6004A72AA /* HCYoutubeParser.framework in Frameworks */,
 				F449DE39160E71C4001BADA4 /* QuartzCore.framework in Frameworks */,
 				3285C49D157D07AD00096202 /* MediaPlayer.framework in Frameworks */,
 				3285C482157CEFFB00096202 /* UIKit.framework in Frameworks */,
@@ -126,6 +185,7 @@
 		3285C472157CEFFA00096202 = {
 			isa = PBXGroup;
 			children = (
+				72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */,
 				3285C487157CEFFB00096202 /* YoutubeParser */,
 				F4B544EE160E4CA2009EB35F /* Resources */,
 				326A0AAF1BEA0CCE002D323A /* youtubeparser-tvos */,
@@ -158,7 +218,6 @@
 		3285C487157CEFFB00096202 /* YoutubeParser */ = {
 			isa = PBXGroup;
 			children = (
-				3285C498157CF00E00096202 /* Classes */,
 				3285C490157CEFFB00096202 /* AppDelegate.h */,
 				3285C491157CEFFB00096202 /* AppDelegate.m */,
 				3285C488157CEFFB00096202 /* Supporting Files */,
@@ -180,13 +239,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3285C498157CF00E00096202 /* Classes */ = {
+		72D0E8D91C821485004A72AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3285C499157CF02700096202 /* HCYoutubeParser.h */,
-				3285C49A157CF02700096202 /* HCYoutubeParser.m */,
+				72D0E8DE1C821485004A72AA /* HCYoutubeParser.framework */,
+				72D0E8E01C821485004A72AA /* HCYoutubeParser.framework */,
 			);
-			path = Classes;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		F449DE2B160E68F9001BADA4 /* Graphics */ = {
@@ -226,10 +285,12 @@
 				326A0AAA1BEA0CCE002D323A /* Sources */,
 				326A0AAB1BEA0CCE002D323A /* Frameworks */,
 				326A0AAC1BEA0CCE002D323A /* Resources */,
+				72D0E8EA1C8214A9004A72AA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				72D0E8E91C8214A9004A72AA /* PBXTargetDependency */,
 			);
 			name = "youtubeparser-tvos";
 			productName = "youtubeparser-tvos";
@@ -243,10 +304,12 @@
 				3285C479157CEFFB00096202 /* Sources */,
 				3285C47A157CEFFB00096202 /* Frameworks */,
 				3285C47B157CEFFB00096202 /* Resources */,
+				72D0E8E51C8214A6004A72AA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				72D0E8E41C8214A6004A72AA /* PBXTargetDependency */,
 			);
 			name = YoutubeParser;
 			productName = YoutubeParser;
@@ -278,6 +341,12 @@
 			mainGroup = 3285C472157CEFFA00096202;
 			productRefGroup = 3285C47E157CEFFB00096202 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 72D0E8D91C821485004A72AA /* Products */;
+					ProjectRef = 72D0E8D81C821485004A72AA /* HCYoutubeParser.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3285C47C157CEFFB00096202 /* YoutubeParser */,
@@ -285,6 +354,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		72D0E8DE1C821485004A72AA /* HCYoutubeParser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HCYoutubeParser.framework;
+			remoteRef = 72D0E8DD1C821485004A72AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		72D0E8E01C821485004A72AA /* HCYoutubeParser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HCYoutubeParser.framework;
+			remoteRef = 72D0E8DF1C821485004A72AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		326A0AAC1BEA0CCE002D323A /* Resources */ = {
@@ -324,7 +410,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				326A0AB81BEA0CCE002D323A /* ViewController.m in Sources */,
-				326A0AC21BEA0CF9002D323A /* HCYoutubeParser.m in Sources */,
 				326A0AB51BEA0CCE002D323A /* AppDelegate.m in Sources */,
 				326A0AB21BEA0CCE002D323A /* main.m in Sources */,
 			);
@@ -336,12 +421,24 @@
 			files = (
 				3285C48E157CEFFB00096202 /* main.m in Sources */,
 				3285C492157CEFFB00096202 /* AppDelegate.m in Sources */,
-				3285C49B157CF02700096202 /* HCYoutubeParser.m in Sources */,
 				F449DE29160E5651001BADA4 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72D0E8E41C8214A6004A72AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HCYoutubeParser;
+			targetProxy = 72D0E8E31C8214A6004A72AA /* PBXContainerItemProxy */;
+		};
+		72D0E8E91C8214A9004A72AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "HCYoutubeParser tvOS";
+			targetProxy = 72D0E8E81C8214A9004A72AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		326A0AB91BEA0CCE002D323A /* Main.storyboard */ = {
@@ -491,7 +588,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -505,7 +603,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YoutubeParser/YoutubeParser-Prefix.pch";
 				INFOPLIST_FILE = "YoutubeParser/YoutubeParser-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -522,6 +621,7 @@
 				326A0AC01BEA0CCE002D323A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3285C477157CEFFA00096202 /* Build configuration list for PBXProject "YoutubeParser" */ = {
 			isa = XCConfigurationList;
