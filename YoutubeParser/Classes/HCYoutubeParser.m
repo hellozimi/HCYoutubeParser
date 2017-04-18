@@ -198,7 +198,7 @@
 }
 
 + (void)h264videosWithYoutubeURL:(NSURL *)youtubeURL
-                   completeBlock:(void(^)(NSDictionary *videoDictionary, NSError *error))completeBlock {
+                   completeBlock:(void(^)(NSDictionary * _Nullable videoDictionary, NSError * _Nullable error))completeBlock {
     NSString *youtubeID = [self youtubeIDFromYoutubeURL:youtubeURL];
     if (youtubeID) {
         dispatch_queue_t queue = dispatch_queue_create("me.hiddencode.yt.backgroundqueue", 0);
