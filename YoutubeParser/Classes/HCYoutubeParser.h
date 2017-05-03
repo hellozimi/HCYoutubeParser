@@ -106,7 +106,7 @@ typedef enum {
 /**
  Method for retreiving a thumbnail for wanted youtube id
  
- @param youtubeURL the complete youtube video id
+ @param youtubeID the complete youtube video id
  @param thumbnailSize the wanted size of the thumbnail
  @param completeBlock the block which is called on completion
  */
