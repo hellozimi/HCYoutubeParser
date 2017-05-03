@@ -5,7 +5,6 @@ Pod::Spec.new do |s|
   s.summary      = "Fetches YouTube mp4 URLS for iOS and tvOS."
   s.description  = "HCYoutubeParser is a class which lets you get the iOS compatible video url from YouTube so you don't need to use a UIWebView or open the YouTube Application."
   s.homepage     = "https://github.com/openwt/HCYoutubeParser"
-  s.license      = "MIT"
   s.author       = "openwt"
   s.platform     = :ios
   s.source       = { :git => "https://github.com/openwt/HCYoutubeParser.git", :tag => "#{s.version}" }
