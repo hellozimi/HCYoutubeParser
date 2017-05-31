@@ -159,7 +159,7 @@
                             NSMutableDictionary *optionsDict = [NSMutableDictionary dictionary];
                             NSArray *keys = @[//@"author", // youtube channel name
                                               //@"avg_rating", // average ratings on yt when downloaded
-                                              @"iurl", //@"iurlmaxres", @"iurlsd", // thumbnail urls
+                                              @"thumbnail_url",// thumbnail urls
                                               //@"keywords", // author defined keywords
                                               @"length_seconds", // total duration in seconds
                                               @"title", // video title
