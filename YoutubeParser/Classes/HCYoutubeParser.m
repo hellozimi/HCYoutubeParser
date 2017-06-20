@@ -159,7 +159,7 @@
                             NSMutableDictionary *optionsDict = [NSMutableDictionary dictionary];
                             NSArray *keys = @[//@"author", // youtube channel name
                                               //@"avg_rating", // average ratings on yt when downloaded
-                                              @"iurl", //@"iurlmaxres", @"iurlsd", // thumbnail urls
+                                              //@"iurl", //@"iurlmaxres", @"iurlsd", // thumbnail urls
                                               //@"keywords", // author defined keywords
                                               @"length_seconds", // total duration in seconds
                                               @"title", // video title
@@ -168,7 +168,9 @@
                             
                             for (NSString *key in keys)
                             {
-                                [optionsDict setObject:parts[key][0] forKey:key]; // [0] because we want the object and not the array
+                                if ([parts objectForKey:key]) {
+                                    [optionsDict setObject:parts[key][0] forKey:key]; // [0] because we want the object and not the array
+                                }
                             }
                             
                             [videoDictionary setObject:optionsDict forKey:@"moreInfo"];
