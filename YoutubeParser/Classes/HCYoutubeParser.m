@@ -168,7 +168,10 @@
                             
                             for (NSString *key in keys)
                             {
-                                [optionsDict setObject:parts[key][0] forKey:key]; // [0] because we want the object and not the array
+                                if ([parts objectForKey:key] &&
+                                    [[parts objectForKey:key] count] > 0) {
+                                    [optionsDict setObject:parts[key][0] forKey:key]; // [0] because we want the object and not the array
+                                }
                             }
                             
                             [videoDictionary setObject:optionsDict forKey:@"moreInfo"];
